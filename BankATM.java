@@ -17,33 +17,50 @@ public class BankATM {
         Scanner ipt = new Scanner(System.in);
         System.out.println("Selamat Datang di Bank Unan");
         int saldo = 100000;
-            System.out.println("Menu ATM");
-            System.out.print("1. Cek Saldo" + '\t');
-            System.out.print("2. Simpan Uang " + '\t');
-            System.out.println("3. Ambil Uang");
-
-            System.out.print("Pilih Menu: ");
-            int menu = ipt.nextInt();
-            
-            if (menu == 1)
+        System.out.println("Menu ATM");
+        String pilOne = "1. Cek Saldo", pilTwo = "2. Simpan Uang", pilTh = "3. Ambil Uang";
+        System.out.println(pilOne + '\t' + pilTwo + '\t' + pilTh);
+        System.out.print("Pilih Menu: ");
+        int pil = ipt.nextInt();
+        if(pil == 1)
+        {
+            System.out.println("Saldo Anda: Rp" + saldo);
+        }
+        else if(pil == 2)
+        {
+            System.out.print("Jumlah simpanan: Rp");
+            int simpan = ipt.nextInt();
+            if(simpan <= 0)
             {
-                System.out.println("Saldo Anda: "+saldo);
-            }
-            else if (menu == 2)
-            {
-                System.out.print("Jumlah Uang Yang Anda Simpan: Rp");
-                saldo += ipt.nextInt();
-                System.out.println("Saldo Anda: "+saldo);
-            }
-            else if (menu == 3)
-            {
-                System.out.print("Jumlah Uang Yang Anda Ambil: Rp");
-                saldo -= ipt.nextInt();
-                System.out.println("Saldo Anda: "+saldo);
+                System.out.println("Format tidak dikenali!");
             }
             else
             {
-                System.out.println("Inputan Anda Tidak Memenuhi");
+                saldo += simpan;
+                System.out.println("Saldo Anda Saat Ini: Rp"+saldo);
             }
         }
+        else if(pil == 3)
+        {
+            System.out.print("Jumlah yang diambil: Rp");
+            int ambil = ipt.nextInt();
+            if(ambil > saldo)
+            {
+                System.out.println("Saldo tidak mencukupi!");
+            }
+            else if(ambil <= 0)
+            {
+                System.out.println("Format tidak dikenali!");
+            }
+            else
+            {
+                saldo -= ambil;
+                System.out.println("Saldo Anda Saat Ini: Rp"+saldo);
+            }
+        }
+        else
+        {
+            System.out.println("Pilihan tidak tersedia. Silakan ketik ulang.");
+        }
     }
+}
